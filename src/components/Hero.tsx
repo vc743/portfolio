@@ -1,10 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
-
-const socialLinks = [
-  { name: "GitHub", href: "https://github.com/vc743", icon: Github },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/victor-contreras-vargas/", icon: Linkedin },
-  { name: "Email", href: "mailto:victorcontrerasvargas55@gmail.com", icon: Mail },
-]
+import { socialLinks } from "../data";
 
 const Hero = () => {
   return (
@@ -19,8 +13,9 @@ const Hero = () => {
               Frontend Developer
             </h1>
             <p className="max-w-lg text-lg leading-relaxed text-zinc-400">
-              I&apos;m a passionate frontend developer focused on building beautiful, responsive, and user-friendly web
-              applications. I love turning complex problems into simple, intuitive designs.
+              I&apos;m a passionate frontend developer focused on building
+              beautiful, responsive, and user-friendly web applications. I love
+              turning complex problems into simple, intuitive designs.
             </p>
 
             {/* Social Links */}
@@ -46,12 +41,18 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 function GeometricCubes() {
   return (
-    <svg viewBox="0 0 400 400" className="h-80 w-80 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="1">
+    <svg
+      viewBox="0 0 400 400"
+      className="h-80 w-80 text-emerald-500"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1"
+    >
       {/* Main cube */}
       <g className="opacity-60">
         <path d="M200 80 L280 130 L280 230 L200 280 L120 230 L120 130 Z" />
@@ -78,16 +79,40 @@ function GeometricCubes() {
       </g>
 
       {/* Dots */}
-      <circle cx="340" cy="180" r="3" fill="currentColor" className="opacity-50" />
-      <circle cx="60" cy="150" r="2" fill="currentColor" className="opacity-40" />
-      <circle cx="320" cy="300" r="2" fill="currentColor" className="opacity-30" />
-      <circle cx="100" cy="340" r="3" fill="currentColor" className="opacity-40" />
+      <circle
+        cx="340"
+        cy="180"
+        r="3"
+        fill="currentColor"
+        className="opacity-50"
+      />
+      <circle
+        cx="60"
+        cy="150"
+        r="2"
+        fill="currentColor"
+        className="opacity-40"
+      />
+      <circle
+        cx="320"
+        cy="300"
+        r="2"
+        fill="currentColor"
+        className="opacity-30"
+      />
+      <circle
+        cx="100"
+        cy="340"
+        r="3"
+        fill="currentColor"
+        className="opacity-40"
+      />
 
       {/* Connection lines */}
       <line x1="340" y1="180" x2="300" y2="160" className="opacity-20" />
       <line x1="60" y1="150" x2="100" y2="140" className="opacity-20" />
     </svg>
-  )
+  );
 }
 
 export default Hero;

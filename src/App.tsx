@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import { Projects } from "./components/Projects";
 import WorkExperience from "./components/WorkExperience";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <main>
         <Hero />
         <WorkExperience />
+        <Projects />
       </main>
     </div>
   );
