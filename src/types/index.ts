@@ -6,6 +6,13 @@ export type NavLink = {
   href: string;
 };
 
+export type SocialLink = {
+  name: string;
+  href: string;
+  icon: ForwardRefExoticComponent<
+  Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+};
+
 export type Experience = {
   company: string;
   role: string;
@@ -23,4 +30,9 @@ export type Project = {
   tech: string[];
   github: string;
   demo: string;
+};
+
+export type Skill = {
+  name: string;
+  icon: React.ReactElement;
 };

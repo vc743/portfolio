@@ -1,7 +1,7 @@
 import { ExternalLink, Github, Folder } from "lucide-react";
 import { projects } from "../data";
 
-export function Projects() {
+const Projects = () => {
   return (
     <section id="projects" className="border-t border-zinc-800/50 py-16">
       <div className="mx-auto max-w-6xl px-6">
@@ -62,3 +62,5 @@ export function Projects() {
     </section>
   );
 }
+
+export default Projects;
