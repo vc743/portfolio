@@ -11,15 +11,15 @@ const Footer = () => {
 
           <div className="flex gap-4">
             {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-zinc-800 p-2 text-zinc-400 transition-all hover:border-emerald-500/50 hover:text-emerald-400"
-              >
-                <link.icon className="h-4 w-4" />
-              </a>
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-zinc-800 p-2 text-zinc-400 transition-all hover:border-emerald-500/50 hover:text-emerald-400"
+                >
+                  <link.icon className="h-4 w-4" />
+                </a>
             ))}
           </div>
         </div>

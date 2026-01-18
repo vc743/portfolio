@@ -19,9 +19,10 @@ export type Experience = {
   period: string;
   current: boolean;
   description: string;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
-  >;
+  // icon: ForwardRefExoticComponent<
+  //   Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+  // >;
+  image: string;
 };
 
 export type Project = {
@@ -30,6 +31,7 @@ export type Project = {
   tech: string[];
   github: string;
   demo: string;
+  image: string;
 };
 
 export type Skill = {

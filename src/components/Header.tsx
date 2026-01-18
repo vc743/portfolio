@@ -1,18 +1,45 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import type { NavLink } from "../types";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 const navLinks: NavLink[] = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
-  { name: "Skills", href: "#skills" },
+  { name: "Sobre mi", href: "#about" },
+  { name: "Experiencia Laboral", href: "#experience" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Tecnologias", href: "#skills" },
 ];
 
 const Header = () => {
+  const { scrollY } = useScroll();
+
+  const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    // No ocultar el header si el menú móvil está abierto
+    if (mobileMenuOpen) {
+      setHidden(false);
+      return;
+    }
+    if (latest > previous! && latest > 150) {
+      setHidden(true)
+    } else {
+      setHidden(false)
+    }
+  })
+
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-800/50 bg-[#0d0d0d]/80 backdrop-blur-md">
+    <motion.header
+    variants={{
+      visible: { y: 0 },
+      hidden: { y: "-100%" },
+    }}
+    animate={hidden ? "hidden" : "visible"}
+    transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="sticky top-0 z-50 border-b border-zinc-800/50 bg-[#0d0d0d]/80 backdrop-blur-md"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#"
@@ -62,7 +89,7 @@ const Header = () => {
           ))}
         </nav>
       )}
-    </header>
+    </motion.header>
   );
 };
 
