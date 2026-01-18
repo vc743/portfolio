@@ -1,4 +1,4 @@
-import { Palette } from "lucide-react";
+// import { Palette } from "lucide-react";
 import type { Experience } from "../types";
 import FadeInOnScroll from "./FadeInOnScroll";
 
