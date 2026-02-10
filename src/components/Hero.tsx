@@ -1,3 +1,4 @@
+import { FileDown } from "lucide-react";
 import { socialLinks } from "../data";
 import FadeInOnScroll from "./FadeInOnScroll";
 
@@ -38,6 +39,16 @@ const Hero = () => {
                   </a>
                 </FadeInOnScroll>
               ))}
+              <FadeInOnScroll delay={0.40}>
+                <a 
+                  href="/VictorContrerasCV-ES.pdf" 
+                  download="VictorContrerasCV-ES.pdf"
+                  className="group flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400 transition-all hover:border-emerald-500/50 hover:text-emerald-400"
+                >
+                  <FileDown className="h-4 w-4"/>
+                  <span>Descargar CV</span>
+                </a>
+              </FadeInOnScroll>
             </div>
           </div>
 
