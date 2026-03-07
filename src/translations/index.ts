@@ -31,6 +31,12 @@ export const translations = {
       title: "Proyectos",
       items: [
         {
+          title: "Solicitud de Efectivo",
+          description:
+            "Es una plataforma diseñada para gestionar de manera eficiente, controlada y transparente las solicitudes de fondos dentro de una organización. Su objetivo principal es optimizar el proceso de requerimiento, aprobación y desembolso de efectivo, garantizando trazabilidad y control financiero.",
+        },
+        {
+          title: "Exercise Tracker",
           description:
             "Desarrollo de una aplicación full-stack MERN para el seguimiento de entrenamientos, con funcionalidades CRUD para la gestión de ejercicios. Construcción de interfaces responsivas en React, manejo de estado con Context API e integración con Node.js, Express y MongoDB.",
         },
@@ -75,6 +81,12 @@ export const translations = {
       title: "Projects",
       items: [
         {
+          title: "Cash Request",
+          description:
+            "It is a platform designed to efficiently, controllably, and transparently manage fund requests within an organization. Its main objective is to optimize the process of requesting, approving, and allocating cash, ensuring traceability and financial control.",
+        },
+        {
+          title: "Exercise Tracker",
           description:
             "Development of a full-stack MERN application for workout tracking, with CRUD features for exercise management. Built responsive React interfaces, managed state with Context API and integrated Node.js, Express and MongoDB.",
         },

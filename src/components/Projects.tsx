@@ -29,33 +29,35 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60" />
 
                   {/* Overlay Links */}
-                  <div className="absolute right-4 top-4 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
-                    >
-                      <Github className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </div>
+                  {project.isPersonalProject && (
+                    <div className="absolute right-4 top-4 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
+                      >
+                        <Github className="h-4 w-4" />
+                      </a>
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
                   <h3 className="mb-2 font-mono text-lg font-bold text-zinc-900 transition-colors group-hover:text-emerald-500 dark:text-white dark:group-hover:text-emerald-400">
-                    {project.title}
+                    {t.items[index].title ?? project.title}
                   </h3>
                   <p className="mb-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                    {t.items[index]?.description ?? project.description}
+                    {t.items[index].description ?? project.description}
                   </p>
 
                   {/* Tech Stack */}

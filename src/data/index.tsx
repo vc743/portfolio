@@ -21,6 +21,13 @@ export const socialLinks: SocialLink[] = [
 
 export const projects: Project[] = [
   {
+    title: "Solicitud de Efectivo",
+    description: "Es una plataforma diseñada para gestionar de manera eficiente, controlada y transparente las solicitudes de fondos dentro de una organización. Su objetivo principal es optimizar el proceso de requerimiento, aprobación y desembolso de efectivo, garantizando trazabilidad y control financiero.",
+    tech: ["React", "TypeScript", "Zustand", "Tanstack Query", "TailwindCSS", "React Hook Form", "NestJS", "SQL Server 2022", "TypeORM"],
+    image: "/SolicitudDeEfectivo.png",
+    isPersonalProject: false
+  },
+  {
     title: "Exercise Tracker",
     description:
       "Desarrollo de una aplicación full-stack MERN para el seguimiento de entrenamientos, con funcionalidades CRUD para la gestión de ejercicios. Construcción de interfaces responsivas en React, manejo de estado con Context API e integración con Node.js, Express y MongoDB.",
@@ -28,7 +35,8 @@ export const projects: Project[] = [
     github: "https://github.com/vc743/exercise-tracker",
     demo: "https://exercise-tracker-xi-one.vercel.app/login",
     image: "/exerciseTracker.png",
-  }
+    isPersonalProject: true
+  },
 ]
 
 export const skills: Skill[] = [

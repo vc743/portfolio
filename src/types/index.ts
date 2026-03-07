@@ -29,9 +29,10 @@ export type Project = {
   title: string;
   description: string;
   tech: string[];
-  github: string;
-  demo: string;
+  github?: string;
+  demo?: string;
   image: string;
+  isPersonalProject: boolean;
 };
 
 export type Skill = {
