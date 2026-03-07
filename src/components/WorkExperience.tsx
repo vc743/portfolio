@@ -6,8 +6,8 @@ import { translations } from "../translations";
 const companyData: Pick<Experience, "company" | "period" | "current" | "image">[] = [
   {
     company: "Signos Framework SRL",
-    period: "JUL 2025 - Actualidad",
-    current: true,
+    period: "JUL 2025 - MAR 2026",
+    current: false,
     image: "https://signos-framework.com/wp-content/uploads/2024/03/logo-signos-03-768x421.webp",
   },
 ];
