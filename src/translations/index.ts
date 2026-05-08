@@ -9,12 +9,12 @@ export const translations = {
     hero: {
       greeting: "Hola, soy Victor",
       title: "Desarrollador Frontend",
-      roles: ["Desarrollador Frontend", "React Developer", "UI Engineer"],
+      roles: ["Desarrollador Frontend", "Desarrollador React"],
       description:
         "Cuento con experiencia construyendo interfaces modernas y mantenibles, enfocado en la creación de aplicaciones eficientes y centradas en el usuario. Trabajo principalmente con React, TypeScript y TailwindCSS, utilizando herramientas de manejo de estado como Zustand. Me caracterizo por mi enfoque práctico, trabajo en equipo y compromiso con la mejora continua, aportando soluciones claras y escalables en entornos ágiles.",
       downloadCV: "Descargar CV",
-      cvFile: "/VictorContrerasCV-ES.pdf",
-      cvFileName: "VictorContrerasCV-ES.pdf",
+      cvFile: "/Victor-Contreras(CV-ES-Frontend).pdf",
+      cvFileName: "Victor-Contreras(CV-ES-Frontend).pdf",
     },
     experience: {
       title: "Experiencia Laboral",
@@ -59,12 +59,12 @@ export const translations = {
     hero: {
       greeting: "Hi, I'm Victor",
       title: "Frontend Developer",
-      roles: ["Frontend Developer", "React Developer", "UI Engineer"],
+      roles: ["Frontend Developer", "React Developer"],
       description:
         "I have experience building modern and maintainable interfaces, focused on creating efficient, user-centered applications. I work primarily with React, TypeScript and TailwindCSS, using state management tools like Zustand. I'm known for my practical approach, teamwork and commitment to continuous improvement, delivering clear and scalable solutions in agile environments.",
       downloadCV: "Download CV",
-      cvFile: "/VictorContrerasCV-ES.pdf",
-      cvFileName: "VictorContrerasCV-ES.pdf",
+      cvFile: "/Victor-Contreras(CV-EN-Frontend).pdf",
+      cvFileName: "Victor-Contreras(CV-EN-Frontend).pdf",
     },
     experience: {
       title: "Work Experience",
