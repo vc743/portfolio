@@ -49,6 +49,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#2ecefa]/10 hover:border-[#61DAFB]",
   },
   {
     name: "TypeScript",
@@ -59,6 +60,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#005c99]/10 hover:border-[#007acc]",
   },
   {
     name: "JavaScript",
@@ -69,6 +71,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#ecd122]/10 hover:border-[#F0DB4F]",
   },
   {
     name: "Tailwind CSS",
@@ -79,6 +82,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#09aff6]/10 hover:border-[#38bdf8]",
   },
   {
     name: "Bootstrap",
@@ -89,6 +93,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#530ac7]/10 hover:border-[#6610f2]",
   },
   {
     name: "Zustand",
@@ -99,6 +104,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#272420]/10 hover:border-[#443E38]",
   },
   {
     name: "Node.js",
@@ -111,6 +117,7 @@ export const skills: Skill[] = [
     
     
     ),
+    hoverStyle: "hover:bg-[#2e8023]/10 hover:border-[#3DA92E]",
   },
   {
     name: "Express.js",
@@ -121,6 +128,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#2e8023]/10 hover:border-[#3DA92E]",
   },
   {
     name: "Postman",
@@ -135,6 +143,7 @@ export const skills: Skill[] = [
               </svg>
             
     ),
+    hoverStyle: "hover:bg-[#e74f0d]/10 hover:border-[#f37036]",
   },
   {
     name: "PostgreSQL",
@@ -145,6 +154,7 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#254b6a]/10 hover:border-[#336791]",
   },
   {
     name: "Git",
@@ -155,5 +165,6 @@ export const skills: Skill[] = [
       </svg>
     
     ),
+    hoverStyle: "hover:bg-[#de330d]/10 hover:border-[#F34F29]",
   },
 ];

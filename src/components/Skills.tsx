@@ -19,7 +19,7 @@ const Skills = () => {
         <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6">
           {skills.map((skill, index) => (
             <FadeInOnScroll index={index} key={skill.name}>
-              <div className="group flex flex-col items-center gap-3 rounded-lg border border-zinc-200/80 bg-white p-5 transition-all duration-300 hover:border-emerald-500/50 hover:bg-zinc-50 dark:border-zinc-800/50 dark:bg-zinc-900/30 dark:hover:bg-zinc-800/50">
+              <div className={`group flex flex-col items-center gap-3 rounded-lg border border-zinc-200/80 bg-white p-5 transition-all duration-300 ${skill.hoverStyle ? `${skill.hoverStyle}` : "hover:border-emerald-500/50 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"}  dark:border-zinc-800/50 dark:bg-zinc-900/30`}>
                 <div className="text-zinc-400 transition-colors duration-300 group-hover:text-emerald-500 dark:text-zinc-400">
                   {skill.icon}
                 </div>

@@ -38,4 +38,5 @@ export type Project = {
 export type Skill = {
   name: string;
   icon: React.ReactElement;
+  hoverStyle?: string;
 };
