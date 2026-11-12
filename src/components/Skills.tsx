@@ -1,37 +1,39 @@
 import { skills } from "../data";
-import FadeInOnScroll from "./FadeInOnScroll";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations";
+import Reveal from "./Reveal";
+import Section from "./Section";
 
 const Skills = () => {
   const { lang } = useLanguage();
   const t = translations[lang].skills;
 
   return (
-    <section id="skills" className="border-t border-zinc-200/50 py-20 dark:border-zinc-800/50">
-      <div className="mx-auto max-w-6xl px-6">
-        <FadeInOnScroll delay={0.25}>
-          <h2 className="mb-12 font-inter text-2xl font-bold text-zinc-900 dark:text-white md:text-3xl">
-            {t.title}
-          </h2>
-        </FadeInOnScroll>
-
-        <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6">
-          {skills.map((skill, index) => (
-            <FadeInOnScroll index={index} key={skill.name}>
-              <div className={`group flex flex-col items-center gap-3 rounded-lg border border-zinc-200/80 bg-white p-5 transition-all duration-300 ${skill.hoverStyle ? `${skill.hoverStyle}` : "hover:border-emerald-500/50 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"}  dark:border-zinc-800/50 dark:bg-zinc-900/30`}>
-                <div className="text-zinc-400 transition-colors duration-300 group-hover:text-emerald-500 dark:text-zinc-400">
-                  {skill.icon}
+    <Section id="skills" index="03" title={t.title}>
+      <ul className="grid grid-cols-2 border-l border-t border-line sm:grid-cols-3 lg:grid-cols-4">
+        {skills.map((skill, index) => (
+          <li key={skill.name} className="border-b border-r border-line">
+            {/* Stagger within a row only, so late rows never wait on early ones */}
+            <Reveal delay={(index % 4) * 0.05} className="h-full">
+              <div className="group flex h-32 flex-col justify-between p-4 transition-colors duration-200 hover:bg-surface md:h-40 md:p-5">
+                <div className="flex items-start justify-between">
+                  <span className="font-mono text-xs text-muted">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {/* Monochrome at rest; the brand colour shows on hover */}
+                  <span className="opacity-60 grayscale transition-[filter,opacity] duration-300 group-hover:opacity-100 group-hover:grayscale-0">
+                    {skill.icon}
+                  </span>
                 </div>
-                <span className="text-center text-xs font-medium text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">
+                <span className="text-lg font-medium tracking-[-0.03em] md:text-xl">
                   {skill.name}
                 </span>
               </div>
-            </FadeInOnScroll>
-          ))}
-        </div>
-      </div>
-    </section>
+            </Reveal>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 };
 

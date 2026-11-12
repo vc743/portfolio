@@ -1,83 +1,114 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 import { projects } from "../data";
-import FadeInOnScroll from "./FadeInOnScroll";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations";
+import Reveal, { EASE_IN_OUT } from "./Reveal";
+import Section from "./Section";
 
 const Projects = () => {
   const { lang } = useLanguage();
   const t = translations[lang].projects;
 
   return (
-    <section id="projects" className="border-t border-zinc-200/50 py-16 dark:border-zinc-800/50">
-      <div className="mx-auto max-w-6xl px-6">
-        <FadeInOnScroll delay={0.25}>
-          <h2 className="mb-10 font-inter text-2xl font-bold text-zinc-900 dark:text-white md:text-3xl">{t.title}</h2>
-        </FadeInOnScroll>
+    <Section id="projects" index="02" title={t.title}>
+      <div className="border-b border-line">
+        {projects.map((project, index) => {
+          const title = t.items[index]?.title ?? project.title;
+          const description = t.items[index]?.description ?? project.description;
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <FadeInOnScroll delay={0.30} key={index}>
-              <div className="group overflow-hidden rounded-xl border border-zinc-200 bg-white transition-all duration-300 hover:border-emerald-500/40 dark:border-zinc-800 dark:bg-zinc-900/30">
-                {/* Project Image */}
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60" />
+          const image = (
+            <img
+              src={project.image}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover object-top transition-transform duration-700 ease-out-strong group-hover:scale-[1.03]"
+            />
+          );
 
-                  {/* Overlay Links */}
-                  {project.isPersonalProject && (
-                    <div className="absolute right-4 top-4 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
+          return (
+            <article
+              key={project.title}
+              className="group grid gap-6 border-t border-line py-8 md:grid-cols-12 md:gap-10 md:py-10"
+            >
+              {/* Image wipes in from the top the first time it is seen */}
+              <motion.div
+                className="aspect-[2/1] overflow-hidden border border-line bg-surface md:col-span-7"
+                initial={{ clipPath: "inset(0 0 100% 0)" }}
+                whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+                transition={{ duration: 1, ease: EASE_IN_OUT }}
+              >
+                {project.demo ? (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${title} — ${t.demo}`}
+                    className="block h-full"
+                  >
+                    {image}
+                  </a>
+                ) : (
+                  image
+                )}
+              </motion.div>
+
+              <Reveal className="flex flex-col md:col-span-5" delay={0.1}>
+                <p className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.08em] text-muted">
+                  <span>{project.isPersonalProject ? t.personal : t.professional}</span>
+                  <span>0{index + 1}</span>
+                </p>
+
+                <h3 className="mt-5 text-[clamp(2rem,3.6vw,3.25rem)] font-medium leading-none tracking-[-0.045em]">
+                  {title}
+                </h3>
+
+                <p className="mt-5 max-w-[60ch] text-pretty leading-relaxed text-muted">
+                  {description}
+                </p>
+
+                <ul className="mt-6 flex flex-wrap gap-x-2 gap-y-1 font-mono text-xs uppercase tracking-[0.04em]">
+                  {project.tech.map((tech, i) => (
+                    <li key={tech} className="flex gap-2">
+                      {tech}
+                      {i < project.tech.length - 1 && <span className="text-muted">/</span>}
+                    </li>
+                  ))}
+                </ul>
+
+                {(project.github || project.demo) && (
+                  <div className="mt-8 flex gap-6 md:mt-auto md:pt-8">
+                    {project.demo && (
                       <a
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-colors hover:bg-emerald-500 hover:text-white"
+                        className="link text-sm"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        {t.demo}
+                        <ArrowUpRight className="arrow h-3.5 w-3.5 text-muted" strokeWidth={1.75} />
                       </a>
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="mb-2 font-mono text-lg font-bold text-zinc-900 transition-colors group-hover:text-emerald-500 dark:text-white dark:group-hover:text-emerald-400">
-                    {t.items[index].title ?? project.title}
-                  </h3>
-                  <p className="mb-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                    {t.items[index].description ?? project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="rounded-full border border-zinc-200 bg-zinc-100 px-3 py-1 text-xs text-zinc-500 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:text-zinc-400"
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link text-sm"
                       >
-                        {tech}
-                      </span>
-                    ))}
+                        {t.code}
+                        <ArrowUpRight className="arrow h-3.5 w-3.5 text-muted" strokeWidth={1.75} />
+                      </a>
+                    )}
                   </div>
-                </div>
-              </div>
-            </FadeInOnScroll>
-          ))}
-        </div>
+                )}
+              </Reveal>
+            </article>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 };
 

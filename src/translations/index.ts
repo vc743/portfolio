@@ -1,14 +1,17 @@
 export const translations = {
   es: {
     nav: {
-      about: "Sobre mi",
-      experience: "Experiencia Laboral",
+      experience: "Experiencia",
       projects: "Proyectos",
       skills: "Tecnologías",
+      contact: "Contacto",
+      menu: "Menú",
+      close: "Cerrar",
+      toggleTheme: "Cambiar tema",
+      toggleLang: "Cambiar idioma",
     },
     hero: {
-      greeting: "Hola, soy Victor",
-      title: "Desarrollador Frontend",
+      greeting: "Hola, soy",
       roles: ["Desarrollador Frontend", "Desarrollador React"],
       description:
         "Cuento con experiencia construyendo interfaces modernas y mantenibles, enfocado en la creación de aplicaciones eficientes y centradas en el usuario. Trabajo principalmente con React, TypeScript y TailwindCSS, utilizando herramientas de manejo de estado como Zustand. Me caracterizo por mi enfoque práctico, trabajo en equipo y compromiso con la mejora continua, aportando soluciones claras y escalables en entornos ágiles.",
@@ -29,6 +32,10 @@ export const translations = {
     },
     projects: {
       title: "Proyectos",
+      personal: "Proyecto personal",
+      professional: "Proyecto profesional",
+      code: "Código",
+      demo: "Ver demo",
       items: [
         {
           title: "Solicitud de Efectivo",
@@ -45,20 +52,29 @@ export const translations = {
     skills: {
       title: "Tecnologías",
     },
+    contact: {
+      title: ["Trabajemos", "juntos"],
+      copy: "Copiar",
+      copied: "Copiado",
+    },
     footer: {
       rights: "Todos los derechos reservados.",
+      top: "Volver arriba",
     },
   },
   en: {
     nav: {
-      about: "About Me",
-      experience: "Work Experience",
+      experience: "Experience",
       projects: "Projects",
       skills: "Technologies",
+      contact: "Contact",
+      menu: "Menu",
+      close: "Close",
+      toggleTheme: "Toggle theme",
+      toggleLang: "Switch language",
     },
     hero: {
-      greeting: "Hi, I'm Victor",
-      title: "Frontend Developer",
+      greeting: "Hi, I'm",
       roles: ["Frontend Developer", "React Developer"],
       description:
         "I have experience building modern and maintainable interfaces, focused on creating efficient, user-centered applications. I work primarily with React, TypeScript and TailwindCSS, using state management tools like Zustand. I'm known for my practical approach, teamwork and commitment to continuous improvement, delivering clear and scalable solutions in agile environments.",
@@ -79,6 +95,10 @@ export const translations = {
     },
     projects: {
       title: "Projects",
+      personal: "Personal project",
+      professional: "Professional project",
+      code: "Code",
+      demo: "Live demo",
       items: [
         {
           title: "Cash Request",
@@ -95,8 +115,14 @@ export const translations = {
     skills: {
       title: "Technologies",
     },
+    contact: {
+      title: ["Let's work", "together"],
+      copy: "Copy",
+      copied: "Copied",
+    },
     footer: {
       rights: "All rights reserved.",
+      top: "Back to top",
     },
   },
 } as const;

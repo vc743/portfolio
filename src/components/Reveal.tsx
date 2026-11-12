@@ -1,58 +1,39 @@
-import { useEffect, useRef, type ReactNode } from "react";
-import { motion, useAnimation, useInView } from "motion/react";
+import type { ReactNode } from "react";
+import { motion } from "motion/react";
+
+export const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+export const EASE_IN_OUT = [0.77, 0, 0.175, 1] as const;
 
 type RevealProps = {
   children: ReactNode;
-  width?: "fit-content" | "100%";
+  /** Seconds. Keep staggers short (30–80ms between siblings). */
+  delay?: number;
+  className?: string;
 };
 
-const Reveal = ({ children, width = "fit-content" }: RevealProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+/** Fades content up once, the first time it scrolls into view. */
+const Reveal = ({ children, delay = 0, className }: RevealProps) => (
+  <motion.div
+    className={className}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+    transition={{ duration: 0.7, delay, ease: EASE_OUT }}
+  >
+    {children}
+  </motion.div>
+);
 
-  const mainControls = useAnimation();
-  const slideControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-      slideControls.start("visible");
-    }
-  }, [isInView]);
-
-  return (
-    <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 75 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.5, delay: 0.25 }}
-      >
-        {children}
-      </motion.div>
-      <motion.div
-        variants={{
-          hidden: { left: 0 },
-          visible: { left: "100%" },
-        }}
-        initial="hidden"
-        animate={slideControls}
-        transition={{ duration: 0.5, ease: "easeIn" }}
-        style={{
-          position: "absolute",
-          top: 4,
-          bottom: 4,
-          left: 0,
-          right: 0,
-          background: "#00BC7D",
-          zIndex: 20,
-        }}
-      />
-    </div>
-  );
-};
+/** Hairline that draws itself from left to right when it enters the viewport. */
+export const Rule = ({ className = "" }: { className?: string }) => (
+  <motion.div
+    aria-hidden
+    className={`h-px origin-left bg-line ${className}`}
+    initial={{ scaleX: 0 }}
+    whileInView={{ scaleX: 1 }}
+    viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+    transition={{ duration: 1.1, ease: EASE_IN_OUT }}
+  />
+);
 
 export default Reveal;

@@ -1,67 +1,75 @@
-import { FileDown } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { socialLinks } from "../data";
-import FadeInOnScroll from "./FadeInOnScroll";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations";
-import useTypewriter from "../hooks/useTypewriter";
+import RotatingText from "./RotatingText";
+
+const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 const Hero = () => {
   const { lang } = useLanguage();
   const t = translations[lang].hero;
-  const displayedRole = useTypewriter(t.roles);
 
   return (
-    <section id="about" className="relative overflow-hidden py-20 md:py-52">
-      {/* Gradient line at top */}
-      <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-emerald-500/50 to-transparent" />
+    <section id="about" className="flex min-h-svh flex-col px-5 pb-6 pt-20 md:px-10 md:pb-8">
+      <div className="flex flex-1 flex-col justify-end">
+        <div
+          className="fade-up flex items-center justify-between font-mono text-xs uppercase tracking-[0.08em] text-muted"
+          style={delay(250)}
+        >
+          <span>{t.greeting}</span>
+          <span>Portfolio — {new Date().getFullYear()}</span>
+        </div>
 
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="space-y-6 col-span-2">
-            <FadeInOnScroll delay={0.25}>
-              <h1 className="font-inter text-6xl font-extrabold text-zinc-900 dark:text-white md:text-7xl lg:text-8xl">
-                {t.greeting}<span className="text-emerald-500">.</span>
-              </h1>
-            </FadeInOnScroll>
+        <h1 className="mt-3 text-[clamp(3.4rem,15.6vw,19rem)] font-semibold uppercase leading-[0.82] tracking-[-0.05em] md:mt-4">
+          <span className="line-mask pt-[0.06em]">
+            <span className="line-rise">Victor</span>
+          </span>
+          <span className="line-mask pt-[0.06em]">
+            <span className="line-rise" style={delay(80)}>
+              Contreras<span className="text-accent">.</span>
+            </span>
+          </span>
+        </h1>
+      </div>
 
-            <FadeInOnScroll delay={0.30}>
-              <p className="font-inter text-3xl md:text-4xl lg:text-5xl text-emerald-500 font-semibold min-h-[1.2em]">
-                {displayedRole}
-                <span className="ml-0.5 inline-block w-[3px] animate-[blink_1s_step-end_infinite] rounded-sm bg-emerald-500 align-middle" style={{ height: "0.85em" }} />
-              </p>
-            </FadeInOnScroll>
+      <div className="mt-8 grid gap-8 border-t border-line pt-6 md:mt-12 md:grid-cols-12 md:gap-10 md:pt-8">
+        <div className="fade-up md:col-span-5" style={delay(350)}>
+          <RotatingText
+            words={t.roles}
+            className="font-serif text-[clamp(2rem,4.2vw,3.75rem)] italic leading-[1.05] tracking-[-0.01em]"
+          />
+        </div>
 
-            <FadeInOnScroll delay={0.35}>
-              <p className="text-lg leading-relaxed text-zinc-500 dark:text-zinc-400">
-                {t.description}
-              </p>
-            </FadeInOnScroll>
+        <div className="fade-up md:col-span-6 md:col-start-7" style={delay(430)}>
+          <p className="max-w-[60ch] text-pretty leading-relaxed text-muted">{t.description}</p>
 
-            {/* Social Links */}
-            <div className="flex flex-wrap gap-3 pt-4">
-              {socialLinks.map((link) => (
-                <FadeInOnScroll delay={0.40} key={link.name}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    className="group flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-2 text-sm text-zinc-500 transition-all hover:border-emerald-500/50 hover:text-emerald-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-400 dark:hover:text-emerald-400"
-                  >
-                    <link.icon className="h-4 w-4" />
-                    <span>{link.name}</span>
-                  </a>
-                </FadeInOnScroll>
-              ))}
-              <FadeInOnScroll delay={0.40}>
-                <a
-                  href={t.cvFile}
-                  download={t.cvFileName}
-                  className="group flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-2 text-sm text-zinc-500 transition-all hover:border-emerald-500/50 hover:text-emerald-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-400 dark:hover:text-emerald-400"
-                >
-                  <FileDown className="h-4 w-4" />
-                  <span>{t.downloadCV}</span>
-                </a>
-              </FadeInOnScroll>
-            </div>
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a
+              href={t.cvFile}
+              download={t.cvFileName}
+              className="group inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition-transform duration-150 ease-out active:scale-[0.97]"
+            >
+              {t.downloadCV}
+              <ArrowDown
+                className="h-4 w-4 transition-transform duration-300 ease-out-strong group-hover:translate-y-0.5"
+                strokeWidth={1.75}
+              />
+            </a>
+
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link text-sm"
+              >
+                {link.name}
+                <ArrowUpRight className="arrow h-3.5 w-3.5 text-muted" strokeWidth={1.75} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

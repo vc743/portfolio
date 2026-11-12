@@ -1,21 +1,162 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
+/* ───────── Tokens ───────── */
+:root {
+  --bg: #f3f2ee;
+  --fg: #121211;
+  --muted: #6e6d67;
+  --line: #d8d6ce;
+  --surface: #e9e7e0;
+  --accent: #ff4d00;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0d0d0c;
+  --fg: #ecebe6;
+  --muted: #8c8b85;
+  --line: #292927;
+  --surface: #171716;
+  --accent: #ff5a1f;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  /* Stronger curves than the CSS built-ins */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ───────── Base ───────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ───────── Hero entrance (CSS so it stays smooth while the page loads) ───────── */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.line-rise {
+  display: block;
+  animation: rise 1s var(--ease-out-strong) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.fade-up {
+  animation: fade-up 800ms var(--ease-out-strong) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
   }
-  50% {
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes fade {
+  from {
     opacity: 0;
   }
 }
 
-@theme {
-  --font-geist: "Geist", sans-serif;
-  --font-geist-mono: "Geist Mono", monospace;
-  --font-inter: "Inter", sans-serif;
-  --font-source-serif4: "Source Serif 4", serif;
+/* ───────── Link underline: draws in from the left, leaves to the right ───────── */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms var(--ease-out-strong);
+}
+
+.link .arrow {
+  transition: transform 250ms var(--ease-out-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .link:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* ───────── Theme switch: circular reveal from the toggle ───────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ───────── Reduced motion: keep fades, drop movement ───────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .line-rise,
+  .fade-up {
+    animation: fade 300ms ease both;
+  }
+
+  .link::after,
+  .link .arrow {
+    transition: none;
+  }
 }
